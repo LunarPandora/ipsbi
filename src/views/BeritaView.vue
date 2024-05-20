@@ -1,5 +1,5 @@
 <script setup>
-  import NewsCard from '@/components/NewsCard.vue'
+    import NewsCard from '@/components/NewsCard.vue'
 </script>
 <template>
     <div class="px-16 py-32 bg-ivory flex flex-col items-center justify-center">
