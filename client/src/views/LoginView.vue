@@ -18,7 +18,7 @@
         const res = await apiClient.get('/sanctum/csrf-cookie')
         const csrfToken = getCookie('XSRF-TOKEN=')
 
-        console.log(document.cookie)
+        console.log(res, csrfToken)
         // const t = await apiClient.get('/auth')
         // console.log(t.data.token)
 
