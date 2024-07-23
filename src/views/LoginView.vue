@@ -15,8 +15,9 @@
     }
 
     async function login(){
-        const t = await apiClient.get('/api/auth')
-        console.log(t.headers)
+        await apiClient.get('/api/auth').then(res => {
+            console.log(res)
+        })
 
         // const res = await apiClient.get('/login', {
         //     params: {
