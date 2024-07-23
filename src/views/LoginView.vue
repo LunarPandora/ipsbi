@@ -24,11 +24,11 @@
     // }
 
     async function login(){
-        // const res = await apiClient.get('/sanctum/csrf-cookie')
-        // // const csrfToken = getCookie('XSRF-TOKEN=')
+        const res = await apiClient.get('/sanctum/csrf-cookie')
+        const csrfToken = getCookie('XSRF-TOKEN=')
 
-        // console.log(res)
-        console.log('test')
+        console.log(res, csrfToken)
+        // console.log('test')
         // const t = await apiClient.get('/auth')   
         // console.log(t.data.token)
 
@@ -60,7 +60,7 @@
     <div class="flex items-center justify-center w-screen h-screen bg-keppel">
         <div class="flex flex-col items-center justify-center px-8 py-16 rounded-lg bg-white gap-5 w-1/3">
             <h1 class="text-5xl font-semibold">Login</h1>
-            <p class="text-gray-400 mb-7">Masukkan akun anda untuk melanjutkan semuanya ehehehe</p>
+            <p class="text-gray-400 mb-7">Masukkan akun anda untuk melanjutkan</p>
 
             <div class="flex items-center justify-center bg-white p-4 border-2 border-keppel rounded-lg w-full gap-3">
                 <fa icon="fas fa-user" fixed-width class="text-lg text-keppel" />
