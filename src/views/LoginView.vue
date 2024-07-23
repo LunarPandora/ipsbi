@@ -15,20 +15,16 @@
     }
 
     async function login(){
-        const res = await apiClient.get('/sanctum/csrf-cookie')
-        const csrfToken = getCookie('XSRF-TOKEN=')
+        const t = await apiClient.get('/api/auth')
+        console.log(t.headers)
 
-        console.log(res, csrfToken)
-        // const t = await apiClient.get('/auth')
-        // console.log(t.data.token)
-
-        // // const res = await apiClient.get('/login', {
-        // //     params: {
-        // //         username: uname,
-        // //         password: upass,
-        // //         // token: localStorage.getItem('token')
-        // //     }
-        // // })
+        // const res = await apiClient.get('/login', {
+        //     params: {
+        //         username: uname,
+        //         password: upass,
+        //         // token: localStorage.getItem('token')
+        //     }
+        // })
 
         // const res = await apiClient.post('/login', {
         //     data: {
