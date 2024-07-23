@@ -72,7 +72,7 @@
                 <input class="w-full outline-none" placeholder="Masukkan password anda..." v-model="upass" />
             </div>
 
-            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click.prevent="login">Masuk</button>
+            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login">Masuk</button>
         </div>
     </div>
 </template>
