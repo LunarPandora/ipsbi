@@ -1,19 +1,19 @@
 <script setup>
     // import apiClient from '@/services/api'
-    import axios from 'axios'
-    import { ref } from 'vue'
-    axios.defaults.withCredentials = true;
-    axios.defaults.withXSRFToken = true;
+    // import axios from 'axios'
+    // import { ref } from 'vue'
+    // axios.defaults.withCredentials = true;
+    // axios.defaults.withXSRFToken = true;
 
-    const apiClient = axios.create({
-        baseURL: "https://api.ipsbi.org",
-        headers: {
-            "Content-Type": "application/json",
-        }, 
-    });
+    // const apiClient = axios.create({
+    //     baseURL: "https://api.ipsbi.org",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     }, 
+    // });
 
-    const uname = ref("")
-    const upass = ref("")
+    // const uname = ref("")
+    // const upass = ref("")
 
     // function getCookie(name) {
     //     const value = document.cookie
@@ -24,10 +24,10 @@
     // }
 
     async function login(){
-        const res = await apiClient.get('/sanctum/csrf-cookie')
-        // const csrfToken = getCookie('XSRF-TOKEN=')
+        // const res = await apiClient.get('/sanctum/csrf-cookie')
+        // // const csrfToken = getCookie('XSRF-TOKEN=')
 
-        console.log(res)
+        // console.log(res)
         console.log('test')
         // const t = await apiClient.get('/auth')
         // console.log(t.data.token)
