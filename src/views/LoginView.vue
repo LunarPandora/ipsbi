@@ -1,35 +1,25 @@
 <script setup>
-    // import apiClient from '@/services/api'
-    // import axios from 'axios'
-    // import { ref } from 'vue'
-    // axios.defaults.withCredentials = true;
-    // axios.defaults.withXSRFToken = true;
+    import axios from 'axios'
+    import apiClient from '@/services/api'
+    import { ref } from 'vue'
 
-    // const apiClient = axios.create({
-    //     baseURL: "https://api.ipsbi.org",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     }, 
-    // });
+    const uname = ref("")
+    const upass = ref("")
 
-    // const uname = ref("")
-    // const upass = ref("")
-
-    // function getCookie(name) {
-    //     const value = document.cookie
-    //     const parts = value.split(name)
-    //     if (parts.length === 2) {
-    //         return parts.pop().split(';').shift()
-    //     }
-    // }
+    function getCookie(name) {
+        const value = document.cookie
+        const parts = value.split(name)
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift()
+        }
+    }
 
     async function login(){
         const res = await apiClient.get('/sanctum/csrf-cookie')
         const csrfToken = getCookie('XSRF-TOKEN=')
 
         console.log(res, csrfToken)
-        // console.log('test')
-        // const t = await apiClient.get('/auth')   
+        // const t = await apiClient.get('/auth')
         // console.log(t.data.token)
 
         // // const res = await apiClient.get('/login', {
@@ -50,7 +40,7 @@
         //     headers: {
         //         'X-CSRF-TOKEN': t.data.token
         //     }
-        // });  
+        // });
 
         // console.log(res.data)
     }
@@ -72,7 +62,7 @@
                 <input class="w-full outline-none" placeholder="Masukkan password anda..." v-model="upass" />
             </div>
 
-            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login">Masuk</button>
+            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login()">Masuk</button>
         </div>
     </div>
 </template>
