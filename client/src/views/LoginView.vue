@@ -29,7 +29,7 @@
 
         // console.log(res)
         console.log('test')
-        // const t = await apiClient.get('/auth')
+        // const t = await apiClient.get('/auth')   
         // console.log(t.data.token)
 
         // // const res = await apiClient.get('/login', {
@@ -50,7 +50,7 @@
         //     headers: {
         //         'X-CSRF-TOKEN': t.data.token
         //     }
-        // });
+        // });  
 
         // console.log(res.data)
     }
@@ -72,7 +72,7 @@
                 <input class="w-full outline-none" placeholder="Masukkan password anda..." v-model="upass" />
             </div>
 
-            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login">Masuk</button>
+            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click.prevent="login">Masuk</button>
         </div>
     </div>
 </template>
