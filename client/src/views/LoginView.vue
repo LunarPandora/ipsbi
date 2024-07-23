@@ -1,5 +1,4 @@
 <script setup>
-    import axios from 'axios'
     import apiClient from '@/services/api'
     import { ref } from 'vue'
 
@@ -16,9 +15,10 @@
 
     async function login(){
         const res = await apiClient.get('/sanctum/csrf-cookie')
-        const csrfToken = getCookie('XSRF-TOKEN=')
+        // const csrfToken = getCookie('XSRF-TOKEN=')
 
-        console.log(res, csrfToken)
+        console.log(res)
+        console.log('test')
         // const t = await apiClient.get('/auth')
         // console.log(t.data.token)
 
@@ -62,7 +62,7 @@
                 <input class="w-full outline-none" placeholder="Masukkan password anda..." v-model="upass" />
             </div>
 
-            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login()">Masuk</button>
+            <button class="bg-keppel rounded-lg p-4 w-full font-semibold text-xl text-white tracking-wide" @click="login">Masuk</button>
         </div>
     </div>
 </template>
