@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 
 const apiClient = axios.create({
-    baseURL: "https://api.ipsbi.org",
+    baseURL: "/api",
     headers: {
         "Content-Type": "application/json",
     }, 
