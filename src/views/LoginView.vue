@@ -6,13 +6,6 @@
     const uname = ref("")
     const upass = ref("")
 
-    function getCookie(name) {
-        const value = document.cookie
-        const parts = value.split(name)
-        if (parts.length === 2) {
-            return parts.pop().split(';').shift()
-        }
-    }
 
     async function login(){
         await apiClient.get('/auth').then(res => {

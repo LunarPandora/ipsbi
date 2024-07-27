@@ -17,21 +17,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server: {
-    cors: {
-      origin: "*",
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      preflightContinue: true,
-      optionsSuccessStatus: 204,
-      credentials:true,
-    },
-    proxy: {
-      "/api": {
-        target: "https://api.ipsbi.org",
-        secure: false,
-        changeOrigin: true,
-        rewrite: (path) => {console.log(path); return path.replace(/^\/api/, '')}
-      }
-    }
-  }
 })
