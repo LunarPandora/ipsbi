@@ -7,27 +7,19 @@
 
     async function login(){
         await apiClient.get('/api/auth')
-        .then(res => console.log((res.headers['_token'])))
-
-        // const res = await apiClient.get('/login', {
-        //     params: {
-        //         username: uname,
-        //         password: upass,
-        //         // token: localStorage.getItem('token')
-        //     }
-        // })
-
-        // const res = await apiClient.post('/login', {
-        //     data: {
-        //         username: uname,
-        //         password: upass,
-        //         // token: localStorage.getItem('token')
-        //     }
-        // }, {
-        //     headers: {
-        //         'X-CSRF-TOKEN': t.data.token
-        //     }
-        // });
+        .then(res => {
+            const token = res.headers['_token']
+            
+            apiClient.get('/login', {
+                params: {
+                    username: uname,
+                    password: upass,
+                    token: token
+                } 
+            }).then(resp => {
+                console.log(resp)
+            })
+        })
 
         // console.log(res.data)
     }
