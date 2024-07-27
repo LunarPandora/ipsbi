@@ -7,7 +7,7 @@
 
     async function login(){
         await apiClient.get('/api/auth')
-        .then(res => console.log((res)))
+        .then(res => console.log((res.headers['_token'])))
 
         // const res = await apiClient.get('/login', {
         //     params: {
