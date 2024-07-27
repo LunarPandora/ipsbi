@@ -6,10 +6,9 @@
     const uname = ref("")
     const upass = ref("")
 
-
     async function login(){
-        await apiClient.get('/auth').then(res => {
-            console.log(res)
+        await apiClient.get('/api/auth').then(res => {
+            console.log(res.data)
         })
 
         // const res = await apiClient.get('/login', {
