@@ -4,7 +4,9 @@ import axios from 'axios'
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 
-const apiClient = axios.create({
+axios.defaults.headers.common = {'Authorization': `Bearer ${import.meta.env.VITE_LARAVEL_TOKEN}`}
+
+const apiClient = axios.create({    
     baseURL: "https://api.ipsbi.org",
     headers: {
         "Content-Type": "application/json",

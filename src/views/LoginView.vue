@@ -1,5 +1,4 @@
 <script setup>
-    import axios from 'axios'
     import apiClient from '@/services/api'
     import { ref } from 'vue'
 
@@ -8,7 +7,7 @@
 
     async function login(){
         await apiClient.get('/api/auth').then(res => {
-            console.log(res.data)
+            console.log(res.headers)
         })
 
         // const res = await apiClient.get('/login', {
