@@ -6,8 +6,10 @@
     const upass = ref("")
 
     async function login(){
-        await apiClient.get('/api/auth').then(res => {
-            console.log(res.headers['_token'])
+        await apiClient.get('/api/auth')
+        .then(res => res.json())
+        .then(res => {
+            console.log(res.headers.get('_token'))
         })
 
         // const res = await apiClient.get('/login', {
