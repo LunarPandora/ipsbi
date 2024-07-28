@@ -8,18 +8,16 @@
     async function login(){
         await apiClient.get('/api/auth')
         .then(res => {
-            let token = res.headers['_token']
+            console.log(res.headers['_token'])
 
             const params = {
                 username: uname.value,
                 password: upass.value,
             }
-
-            console.log(token)
             
             apiClient.post('/login', params, {
                 headers: {
-                    token: token
+                    token: res.headers['_token']
                 }
             }).then(resp => {
                 console.log(resp)
