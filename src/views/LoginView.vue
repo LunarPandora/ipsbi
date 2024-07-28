@@ -11,10 +11,12 @@
             const token = res.headers['_token']
             
             apiClient.post('/login', {
+                headers: {
+                    token: token
+                },
                 params: {
                     username: uname.value,
                     password: upass.value,
-                    token: token
                 } 
             }).then(resp => {
                 console.log(resp)
