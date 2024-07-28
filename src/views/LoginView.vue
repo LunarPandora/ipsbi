@@ -17,7 +17,7 @@
             
             apiClient.post('/login', params, {
                 headers: {
-                    'token': token
+                    'Authorization': `Bearer ${token}`
                 }
             }).then(resp => {
                 console.log(resp)
