@@ -10,10 +10,10 @@
         .then(res => {
             const token = res.headers['_token']
             
-            apiClient.get('/login', {
+            apiClient.post('/login', {
                 params: {
-                    username: uname,
-                    password: upass,
+                    username: uname.value,
+                    password: upass.value,
                     token: token
                 } 
             }).then(resp => {
