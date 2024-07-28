@@ -12,7 +12,7 @@
             
             apiClient.post('/login', {
                 headers: {
-                    token: token
+                    'token': token
                 },
                 params: {
                     username: uname.value,
