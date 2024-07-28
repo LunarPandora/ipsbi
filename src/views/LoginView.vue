@@ -8,7 +8,7 @@
     async function login(){
         await apiClient.get('/api/auth')
         .then(res => {
-            const token = res.headers['_token']
+            let token = res.headers['_token']
             
             apiClient.post('/login', {
                 headers: {
