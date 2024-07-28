@@ -6,26 +6,23 @@
     const upass = ref("")
 
     async function login(){
-        console.log(csrfToken)
+        await apiClient.get('/api/auth')
+        .then(res => {
+            console.log(res.headers['_token'])
 
-        // await apiClient.get('/api/auth')
-        // .then(res => {
-
-            // console.log(res.headers['_token'])
-
-            // const params = {
-            //     username: uname.value,
-            //     password: upass.value,
-            // }
+            const params = {
+                username: uname.value,
+                password: upass.value,
+            }
             
-            // apiClient.post('/login', params, {
-            //     headers: {
-            //         token: res.headers['_token']
-            //     }
-            // }).then(resp => {
-            //     console.log(resp)
-            // })
-        // })
+            apiClient.post('/login', params, {
+                headers: {
+                    token: token
+                }
+            }).then(resp => {
+                console.log(resp)
+            })
+        })
 
         // console.log(res.data)
     }
