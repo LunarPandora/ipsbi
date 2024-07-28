@@ -6,20 +6,21 @@
     const upass = ref("")
 
     async function login(){
-        await apiClient.get('/api/auth')
+        await apiClient.get('/sanctum/csrf-cookie')
         .then(res => {
-            const params = {
-                username: uname.value,
-                password: upass.value,
-            }
+            console.log(res.headers)
+            // const params = {
+            //     username: uname.value,
+            //     password: upass.value,
+            // }
             
-            apiClient.post('/login', params, {
-                headers: {
-                    token: res.headers['_token']
-                }
-            }).then(resp => {
-                console.log(resp)
-            })
+            // apiClient.post('/login', params, {
+            //     headers: {
+            //         token: res.headers['_token']
+            //     }
+            // }).then(resp => {
+            //     console.log(resp)
+            // })
         })
 
         // console.log(res.data)
