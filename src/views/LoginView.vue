@@ -9,15 +9,16 @@
         await apiClient.get('/api/auth')
         .then(res => {
             let token = res.headers['_token']
+
+            const params = {
+                username: uname.value,
+                password: upass.value,
+            }
             
-            apiClient.post('/login', {
+            apiClient.post('/login', params, {
                 headers: {
                     'token': token
-                },
-                params: {
-                    username: uname.value,
-                    password: upass.value,
-                } 
+                }
             }).then(resp => {
                 console.log(resp)
             })
