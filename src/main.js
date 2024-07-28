@@ -14,6 +14,8 @@ import '../node_modules/flowbite-vue/dist/index.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas, fab)
 
+window.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
 const app = createApp(App)
 
 app.component('fa', FontAwesomeIcon)
