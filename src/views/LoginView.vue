@@ -14,10 +14,12 @@
                 username: uname.value,
                 password: upass.value,
             }
+
+            console.log(token)
             
             apiClient.post('/login', params, {
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    token: token
                 }
             }).then(resp => {
                 console.log(resp)

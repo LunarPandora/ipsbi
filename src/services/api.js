@@ -9,6 +9,7 @@ axios.defaults.headers.common = {'Authorization': `Bearer ${import.meta.env.VITE
 const apiClient = axios.create({    
     baseURL: "https://api.ipsbi.org",
     headers: {
+        "Accept": "application/json",
         "Content-Type": "application/json",
     }, 
 });
