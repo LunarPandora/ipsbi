@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function create(Request $request){
         $foldername = '';
-        $pic_filename = 'placeholder.png';
+        $pic_filename = '-';
 
         if($request->hasFile('profile')){
             $pic = $request->file('profile');
@@ -35,7 +35,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'email' => $request->email,
-            'foto_profil' => 'https://api.ipsbi.org/public/profiles/' . $pic_filename,
+            'foto_profil' => $pic_filename,
             'role' => 'admin',
         ]);
 
@@ -61,14 +61,14 @@ class UserController extends Controller
         if($request->hasFile('profile')){
             $pic = $request->file('profile');
             
-            if($acc->foto_profil != 'https://api.ipsbi.org/public/profiles/placeholder.png'){
-                Storage::disk('profiles')->delete(explode("profiles/", $acc->foto_profil)[1]);
+            if($acc->foto_profil != '-'){
+                Storage::disk('profiles')->delete($acc->foto_profil);
             }
 
             $pic_filename = $pic->hashName();
             $ppath = Storage::disk('profiles')->putFileAs($foldername, $thumbs, $pic_filename);
 
-            $acc->foto_profil = 'https://api.ipsbi.org/public/profiles/' . $pic_filename;
+            $acc->foto_profil = $pic_filename;
         }
 
         $acc->save();
@@ -84,8 +84,8 @@ class UserController extends Controller
     public function delete(Request $request){
         $acc = User::find($request->id);
 
-        if($acc->foto_profil != 'https://api.ipsbi.org/public/profiles/placeholder.png'){
-            Storage::disk('profiles')->delete(explode("profiles/", $acc->foto_profil)[1]);
+        if($acc->foto_profil != '-'){
+            Storage::disk('profiles')->delete($acc->foto_profil);
         }
 
         $acc->delete();

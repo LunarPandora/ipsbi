@@ -80,7 +80,7 @@
     async function hapusPost(){
         await apiClient.get('/sanctum/csrf-cookie')
         await apiClient.post('/api/acc/delete', {
-            id: props.form.id
+            id: uid.value
         })
         .then(resp => {
             if(resp.data == 'Success!'){
@@ -100,18 +100,16 @@
     }
 
     onMounted(() => {
-        if(!props.delete){
-            if(props.form == 0){
-                isNewAcc.value = true
-            }
-            else{
-                isNewAcc.value = false
+        if(props.form == 0){
+            isNewAcc.value = true
+        }
+        else{
+            isNewAcc.value = false
 
-                uid.value = props.form.id
-                username.value = props.form.username
-                email.value = props.form.email
-                gambar.value = props.form.foto_profil
-            }
+            uid.value = props.form.id_user
+            username.value = props.form.username
+            email.value = props.form.email
+            gambar.value = props.form.foto_profil
         }
     })
 </script>
@@ -152,8 +150,8 @@
             <div class="w-1/2 flex relative">
                 <p class="bg-white absolute top-[-8px] left-5 px-1 text-sm text-indigo">Foto profil (upload jika ingin mengubah foto profil)</p>
                 <div class="bg-white p-4 border-[2px] border-indigo rounded-xl flex items-center justify-between w-full gap-3">
-                    <!-- <fa icon="fas fa-user" class="text-indigo" fixed-width /> -->
                     <input type="file" @change="updateFile($event.target.files)" class="border-0 p-0 outline-none w-full" placeholder="Tambahkan foto profil">
+
                     <img :src="gambar" class="w-1/6">
                 </div>
             </div>
