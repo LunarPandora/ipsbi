@@ -54,10 +54,11 @@
         <div class="flex gap-7" id="tabPane">
             <RouterLink to="/">Beranda</RouterLink>
             <RouterLink to="/about">Tentang Kami</RouterLink>
+            <RouterLink to="/form">Formulir</RouterLink>
             <RouterLink to="/berita">Berita</RouterLink>
             
             <!-- <p @mouseover="showDropdownContent('mbkm')">MBKM</p> -->
-            <p @mouseover="showDropdownContent('registrasi')">Registrasi</p>
+            <!-- <p @mouseover="showDropdownContent('registrasi')">Registrasi</p> -->
         </div>
     </div>
 

@@ -6,6 +6,6 @@
 </script>
 <template>
     <Header />
-    <RouterView></RouterView>
+    <RouterView class="min-h-screen"></RouterView>
     <Footer />
 </template>

@@ -13,3 +13,7 @@ body{
 .display{
   font-family: "DM Serif Display", "Times New Roman", serif;
 }
+
+.svc-creator__banner{
+  display: none !important;
+}

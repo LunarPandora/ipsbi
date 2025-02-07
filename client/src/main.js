@@ -1,5 +1,23 @@
 import './assets/main.css'
 
+import "tinymce/tinymce";
+import "tinymce/themes/silver";
+import "tinymce/icons/default";
+
+import 'tinymce/skins/ui/oxide/skin.js'
+import 'tinymce/skins/ui/oxide/content.js'
+
+import 'tinymce/models/dom';
+
+import 'tinymce/plugins/emoticons';
+import 'tinymce/plugins/emoticons/js/emojis';
+import 'tinymce/plugins/searchreplace';
+import 'tinymce/plugins/media';
+import 'tinymce/plugins/wordcount';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/lists';
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

@@ -1,5 +1,26 @@
 <script setup>
-    // if(localStorage.getItem('token'))
+    import { onMounted } from 'vue';
+    import apiClient from '@/services/api'
+    import { useSessionStore } from '@/stores/session';
+    import { useRoute, useRouter } from 'vue-router'
+
+    const route = useRoute()
+    const router = useRouter()
+    const sessionStore = useSessionStore()
+
+    async function logout(){
+        await apiClient.get('/sanctum/csrf-cookie')
+        await apiClient.post('/logout')
+        .then(resp => {
+            if(resp.data == 'LOGOUT_SUCCESS'){
+                sessionStore.inauthenticate()
+                router.push('/')
+            }
+            else{
+                alert('Logout gagal!')
+            }
+        })
+    }
 </script>
 
 <template>
@@ -9,44 +30,34 @@
                 <!-- <img src="@/assets/img/IPSBI-LOGO-FINAL-WHITE.png" class="mb-4"> -->
                 <p class="display font-medium text-4xl tracking-wider text-white w-full mb-10">IPSBI</p>
 
-                <RouterLink to="/dashboard/post" class="w-full">
-                    <div class="bg-gray-700 rounded-xl p-4 flex items-center gap-3">
-                        <fa icon="fas fa-newspaper" class="text-xl text-white" />
-                        <p class="text-white">Postingan</p>
-                    </div>
+                <RouterLink to="/dashboard/post" :active-class="'bg-gray-700 rounded-xl p-4 flex items-center gap-3 group'" class="w-full rounded-xl p-4 flex items-center gap-3 group hover:bg-white text-white">
+                    <fa icon="fas fa-newspaper" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Postingan</p>
                 </RouterLink>
 
-                <RouterLink to="/dashboard/banner" class="w-full">
-                    <div class="rounded-xl p-4 flex items-center gap-3 group hover:bg-white">
-                        <fa icon="fas fa-image" class="text-xl text-neutral-400 group-hover:text-darkTeal" />
-                        <p class="text-neutral-400 group-hover:text-darkTeal">Banner</p>
-                    </div>
+                <RouterLink to="/dashboard/banner" :active-class="'bg-gray-700 rounded-xl p-4 flex items-center gap-3'" class="w-full rounded-xl p-4 flex items-center gap-3 group hover:bg-white text-white">
+                    <fa icon="fas fa-image" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Banner</p>
                 </RouterLink>
                 
-                <RouterLink to="/dashboard/comment" class="w-full">
-                    <div class="rounded-xl p-4 flex items-center gap-3 group hover:bg-white">
-                        <fa icon="fas fa-comment" class="text-xl text-neutral-400 group-hover:text-darkTeal" />
-                        <p class="text-neutral-400 group-hover:text-darkTeal">Komentar</p>
-                    </div>
+                <RouterLink to="/dashboard/comment" :active-class="'bg-gray-700 rounded-xl p-4 flex items-center gap-3'" class="w-full rounded-xl p-4 flex items-center gap-3 group hover:bg-white text-white">
+                    <fa icon="fas fa-comment" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Komentar</p>
                 </RouterLink>
 
-                <RouterLink to="/dashboard/account" class="w-full">
-                    <div class="rounded-xl p-4 flex items-center gap-3 group hover:bg-white">
-                        <fa icon="fas fa-user" class="text-xl text-neutral-400 group-hover:text-darkTeal" />
-                        <p class="text-neutral-400 group-hover:text-darkTeal">Akun</p>
-                    </div>
+                <RouterLink to="/dashboard/account" :active-class="'bg-gray-700 rounded-xl p-4 flex items-center gap-3'" class="w-full rounded-xl p-4 flex items-center gap-3 group hover:bg-white text-white">
+                    <fa icon="fas fa-user" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Akun</p>
                 </RouterLink>
 
-                <RouterLink to="/dashboard/form" class="w-full">
-                    <div class="rounded-xl p-4 flex items-center gap-3 group hover:bg-white">
-                        <fa icon="fas fa-clipboard" class="text-xl text-neutral-400 group-hover:text-darkTeal" />
-                        <p class="text-neutral-400 group-hover:text-darkTeal">Form</p>
-                    </div>
+                <RouterLink to="/dashboard/form" :active-class="'bg-gray-700 rounded-xl p-4 flex items-center gap-3'" class="w-full rounded-xl p-4 flex items-center gap-3 group hover:bg-white text-white">
+                    <fa icon="fas fa-clipboard" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Form</p>
                 </RouterLink>
 
-                <div class="rounded-xl w-full p-4 flex items-center gap-3 group hover:bg-white">
-                    <fa icon="fas fa-right-from-bracket" class="text-xl text-neutral-400 group-hover:text-darkTeal" />
-                    <p class="text-neutral-400 group-hover:text-darkTeal">Logout</p>
+                <div class="rounded-xl w-full p-4 flex items-center gap-3 group hover:bg-white text-white" @click="logout()">
+                    <fa icon="fas fa-right-from-bracket" class="text-xl group-hover:text-darkTeal" />
+                    <p class="group-hover:text-darkTeal">Logout</p>
                 </div>
             </div>
         </div>
@@ -55,8 +66,8 @@
             <div class="flex bg-keppel sticky top-0 right-0 h-fit p-8">
                 <h1 class="text-white font-medium text-xl">Dashboard</h1>
             </div>  
-            <div class="flex flex-col bg-ivory h-full p-8 gap-10">
-                <RouterView />
+            <div class="flex flex-col bg-ivory h-full p-8 gap-10">  
+                <RouterView :key="route.path" />
             </div>
         </div>
     </div>

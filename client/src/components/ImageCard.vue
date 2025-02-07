@@ -1,11 +1,15 @@
 <script setup>
+    import DateFormatter from '@/services/date.js'
+
+    const emit = defineEmits(['ondelete'])
+
     const props = defineProps({
-        pesan: {
+        data: {
             type: Object,
             default: {
-                img: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
-                judul: "Gambar 1",
-                waktu: new Date().toLocaleDateString("id-ID"),
+                link: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
+                title: "Gambar 1",
+                created_at: 0,
             }
         }
     })
@@ -13,24 +17,18 @@
 <template>
     <div class="flex flex-col border-[1px] border-slate-100 bg-white">
         <!-- Gambar -->
-        <img class="h-auto max-w-full" :src="pesan.img" alt="">
+        <img class="h-56 object-cover max-w-full" :src="data.link" :alt="data.title">
 
         <!-- Isi berita -->
         <div class="flex w-full p-5 items-center justify-between">
-            <div class="flex flex-col">
-                <p class="text-2xl font-semibold mb-2">{{ pesan.judul }}</p>
-                <p class="text-slate-500 text-sm truncate">Ditambahkan pada {{ pesan.waktu }}</p>
+            <div class="flex flex-col w-2/3 overflow-hidden text-ellipsis">
+                <p class="text-2xl font-semibold mb-2 overflow-hidden text-ellipsis">{{ data.title }}</p>
+                <p class="text-slate-500 text-sm truncate">{{ new DateFormatter(data.created_at).format() }}</p>
             </div>
 
             <div class="flex gap-1">
-                <button class="bg-yellow-300 p-3 rounded-lg flex gap-2 items-center justify-center">
-                    <fa icon="fas fa-edit" class="text-white" fixed-width></fa>
-                    <!-- <p class="text-white">Edit</p> -->
-                </button>
-
-                <button class="bg-red-500 p-3 rounded-lg flex gap-2 items-center justify-center">
+                <button class="bg-red-500 p-3 rounded-lg flex gap-2 items-center justify-center" @click="emit('ondelete', data.id)">
                     <fa icon="fas fa-trash" class="text-white" fixed-width></fa>
-                    <!-- <p class="text-white">Hapus</p> -->
                 </button>
             </div>
         </div>
