@@ -10,7 +10,9 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function get(Request $request){
-        $data = Comment::where('id_post', $request->idp)->orderBy('created_at')->paginate(5);
+        $data = Comment::where('id_post', $request->idp)
+                ->orderBy('created_at')
+                ->paginate(5);
 
         return response()->json($data); 
     }
@@ -25,8 +27,9 @@ class CommentController extends Controller
     }
 
     public function fetch(){
-        $data = Comment::select('comments.id', 'posts.judul', 'isi_komentar', 'nama', 'email', 'comments.created_at')
-                        ->join('posts', 'posts.id', '=', 'comments.id_post')
+        $data = Comment::select('comments.id_komentar', 'posts.judul', 'isi_komentar', 'nama', 'email', 
+                                'comments.created_at')
+                        ->with(['posts'])
                         ->paginate(6);
 
         return response()->json($data);

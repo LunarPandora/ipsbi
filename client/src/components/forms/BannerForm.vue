@@ -57,6 +57,8 @@
     }
 
     async function hapusPost(){
+        console.log(props.id)
+
         await apiClient.get('/sanctum/csrf-cookie')
         await apiClient.post('/api/banner/delete', {
             id: props.id

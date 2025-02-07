@@ -5,19 +5,14 @@
 
     const props = defineProps({
         data: {
-            type: Object,
-            default: {
-                link: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
-                title: "Gambar 1",
-                created_at: 0,
-            }
+            type: Object
         }
     })
 </script>
 <template>
     <div class="flex flex-col border-[1px] border-slate-100 bg-white">
         <!-- Gambar -->
-        <img class="h-56 object-cover max-w-full" :src="data.link" :alt="data.title">
+        <img class="h-56 object-cover max-w-full" :src="'https://api.ipsbi.org/public/banners/' + data.link" :alt="data.title">
 
         <!-- Isi berita -->
         <div class="flex w-full p-5 items-center justify-between">
@@ -27,7 +22,7 @@
             </div>
 
             <div class="flex gap-1">
-                <button class="bg-red-500 p-3 rounded-lg flex gap-2 items-center justify-center" @click="emit('ondelete', data.id)">
+                <button class="bg-red-500 p-3 rounded-lg flex gap-2 items-center justify-center" @click="emit('ondelete', data.id_banner)">
                     <fa icon="fas fa-trash" class="text-white" fixed-width></fa>
                 </button>
             </div>

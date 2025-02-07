@@ -52,8 +52,6 @@
     }
 
     function updateModalStatus(respon){
-        console.log(respon)
-
         if(respon.isFinished){
             if(respon.mode == 'add'){
                 toggleModal(0, 'Tambah', 'form', false)
@@ -93,7 +91,7 @@
         </div>
         <div class="flex flex-col w-full" v-if="bannerData.length != 0">
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <ImageCard v-for="data in bannerData" :data="data" @ondelete="(id) => toggleModal(id, 'Hapus', 'form', true)"  />
+                <ImageCard v-for="data in bannerData" :data="data" @ondelete="(id) => toggleModal(id, 'Hapus', 'form', true)" />
             </div>
 
             <fwb-pagination class="pt-10" v-model="currentPage" :total-pages="pageAmount" :total-items="6"></fwb-pagination>

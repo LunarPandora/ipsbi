@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class BannerController extends Controller
 {
     public function fetch(Request $request){
-        $banners = Banner::select('id', 'title', 'link', 'created_at');
+        $banners = Banner::select('id_banner', 'title', 'link', 'created_at');
 
         if($request->mode == 'all'){
             $banners = $banners->get();
@@ -31,7 +31,7 @@ class BannerController extends Controller
         $bpath = Storage::disk('banners')->putFileAs($foldername, $banner, $banner_filename);
         $proc = Banner::create([
             'title' => $request->title,
-            'link' => 'https://api.ipsbi.org/public/banners/' . $banner_filename
+            'link' => $banner_filename
         ]);
 
         if($proc){
@@ -45,7 +45,7 @@ class BannerController extends Controller
     public function delete(Request $request){
         $banner = Banner::find($request->id);
 
-        Storage::disk('banners')->delete(explode("banners/", $banner->link)[1]);
+        Storage::disk('banners')->delete($banner->link);
         $banner->delete();
 
         if($banner){

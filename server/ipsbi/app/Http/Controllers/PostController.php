@@ -12,10 +12,9 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function fetch(){
-        $post = Post::select('posts.id', 'judul', 'url_isi', 'foto_post', 'id_penulis', 'username', 'id_kategori', 'tag', 'categories.nama', 'posts.created_at', 'posts.updated_at')
+        $post = Post::select('posts.id_post', 'judul', 'url_isi', 'foto_post', 'id_user', 'username', 'id_kategori', 'tag', 'categories.nama', 'posts.created_at', 'posts.updated_at')
+        ->with(['users', 'categories'])
         ->withCount('comments')
-        ->leftJoin('users', 'users.id', '=', 'posts.id_penulis')
-        ->leftJoin('categories', 'categories.id', '=', 'posts.id_kategori')
         ->paginate(6);
 
         return response()->json($post);
